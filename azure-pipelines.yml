@@ -1,0 +1,21 @@
+
+trigger:
+- main
+
+pool:
+  name: Default
+
+steps:
+-
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'aciserviceconnection'
+    subscriptionId: '94b32def-28a7-475d-bbe4-bfa09615697a'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'bharathrs'
+    location: 'UK South'
+    templateLocation: 'Linked artifact'
+    csmFile: 'templates\azuredeploy.json'
+    csmParametersFile: 'teamplates\azuredeploy.parameters.json'
+    deploymentMode: 'Incremental'
